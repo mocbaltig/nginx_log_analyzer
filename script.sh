@@ -15,6 +15,7 @@ printf "\n"
 
 echo "Top 5 response status codes:"
 top_five_status_code=$(echo "$logs" | awk '{print $9}' | grep -v '"-"' | sort | uniq -c | sort -nr | head -n 5)
+# top_five_status_code=$(echo "$logs" | cut -f 9 -d " " | grep -v '"-"' | sort | uniq -c | sort -nr | head -n 5) -- other way
 echo "$top_five_status_code" | awk '{print $2 " -> " $1 " requests"}' | column --table
 printf "\n"
 
